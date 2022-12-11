@@ -42,7 +42,8 @@ app.get("/", async (req, res) => {
   try {
     let videoData = {};
     const { data } = await axios.get(
-      "https://api.twitch.tv/helix/streams?user_id=144903347",
+      //"https://api.twitch.tv/helix/streams?user_id=144903347",
+      "https://api.twitch.tv/helix/streams?user_id=183517851",
       {
         headers: {
           "Client-Id": process.env.CLIENT_ID,
@@ -57,7 +58,7 @@ app.get("/", async (req, res) => {
       return res.send(videoData);
     }
 
-    res.send(data);
+    res.send({ ...data, state: "online" });
   } catch (error) {
     console.log(error);
   }
